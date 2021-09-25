@@ -88,7 +88,10 @@ function checkAnswers(){
 }
 function countdown(){
     var timeInterval = setInterval(function() {
-
+        if(timeLeft < 1){
+            gameOver()
+            clearInterval(timeInterval)
+        }
     })
 }
 
