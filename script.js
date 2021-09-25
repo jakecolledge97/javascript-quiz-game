@@ -6,7 +6,7 @@ var myQuestions = [{
         b: ".html",
         c: ".css"
     },
-    correctAnswer: "a"
+    correctAnswer: ".js"
 },
 {
     question: "Which of the following is a valid JavaScript term",
@@ -19,9 +19,11 @@ var myQuestions = [{
     correctAnswer: "d"
 }]
 var playGame = document.querySelector(".play-game")
+var timerEl = document.querySelector(".time")
+var timeLeft = 60;
 var questionCounter = 0;
 var quizScore = 0;
-var userAnswer = "";
+var userAnswer;
 
 playGame.addEventListener("click", init)
 
@@ -38,11 +40,20 @@ function askQuestions(){
     var currentQuestion = myQuestions[questionCounter].question
     //creates an html element to contain the question
     var askQuestion = document.createElement("p")
-    //removes the descriptor already in main
-    document.querySelector("#game-description").remove()    
+    //removes the descriptor already in main if its there
+    if(questionCounter === 0){
+        document.querySelector("#game-description").remove()  
+    }else if(questionCounter > 0){
+        //removes the previous question
+        document.querySelector("main p").remove()
+        //removes previous answers button
+        var arr = document.querySelectorAll("main button")
+        arr.forEach(element => element.remove())
+    }
     //adds the question to the page
     askQuestion.textContent = currentQuestion
     document.querySelector("main").append(askQuestion)
+    
 }
 
 //funtion to display answers
@@ -55,23 +66,30 @@ function askAnswers(){
         var listAnswers = document.createElement("button")
         listAnswers.textContent = answerListArr[i]
         document.querySelector("main").append(listAnswers) 
-    }
-    var answerButton = document.querySelector("main")
-    answerButton.addEventListener("click", function(event){
-        userAnswer = event.target
-        if(userAnswer === "button"){
+        listAnswers.addEventListener("click", function(event){
+            var element = event.target;
+            userAnswer = element.textContent
             checkAnswers()
-        }
-    })
+        })        
+    }
+     
 }
-
+//function to check answers when clicks and build the next questions
 function checkAnswers(){
     var correct = myQuestions[questionCounter].correctAnswer
-
-    if(userAnswer.value === correct){
+    console.log(correct)
+    if(userAnswer === correct){
         questionCounter++
-        console.log(questionCounter)
+        quizScore++
+    }else{
+        questionCounter++
     }
+    buildQuiz()
+}
+function countdown(){
+    var timeInterval = setInterval(function() {
+
+    })
 }
 
 //function to start game when play button is clicked
