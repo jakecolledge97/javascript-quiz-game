@@ -20,7 +20,7 @@ var myQuestions = [{
 }]
 var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
-var timeLeft = 60;
+
 var questionCounter = 0;
 var quizScore = 0;
 var userAnswer;
@@ -86,17 +86,25 @@ function checkAnswers(){
     }
     buildQuiz()
 }
+//function that starts a countdown when play game button is clicked
 function countdown(){
+    var timeLeft = 60;
+
     var timeInterval = setInterval(function() {
         if(timeLeft < 1){
             gameOver()
             clearInterval(timeInterval)
+        }else if(timeLeft === 1){
+        }else{
+            timerEl.textContent = timeLeft
+            timeLeft--
         }
-    })
+    }, 1000);
 }
 
 //function to start game when play button is clicked
 function init(){
+    countdown()
     buildQuiz()
 }
 
