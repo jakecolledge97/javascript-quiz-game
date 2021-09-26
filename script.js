@@ -16,11 +16,11 @@ var myQuestions = [{
         c:"function",
         d:"All of the above"
     },
-    correctAnswer: "d"
+    correctAnswer: "All of the above"
 }]
 var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
-
+var questionsAmount = myQuestions.length;
 var questionCounter = 0;
 var quizScore = 0;
 var userAnswer;
@@ -77,31 +77,49 @@ function askAnswers(){
 //function to check answers when clicks and build the next questions
 function checkAnswers(){
     var correct = myQuestions[questionCounter].correctAnswer
-    console.log(correct)
     if(userAnswer === correct){
         questionCounter++
         quizScore++
+        buildQuiz()
     }else{
         questionCounter++
+        buildQuiz()
     }
-    buildQuiz()
+    
 }
 //function that starts a countdown when play game button is clicked
 function countdown(){
-    var timeLeft = 60;
+    var timeLeft = 6;
 
     var timeInterval = setInterval(function() {
         if(timeLeft < 1){
+            timeLeft--
             gameOver()
             clearInterval(timeInterval)
-        }else if(timeLeft === 1){
         }else{
             timerEl.textContent = timeLeft
             timeLeft--
         }
     }, 1000);
 }
+//function finish game
+function gameOver(){
+    //removes the previous question
+    document.querySelector("main p").remove()
+    //removes previous answers button
+    var arr = document.querySelectorAll("main button")
+    arr.forEach(element => element.remove())
 
+    var userScore = document.createElement("p")
+    if(questionCounter === questionsAmount){
+        userScore.textContent = "Congrats you have finished the quiz. \bYou finished with a score of " + quizScore;
+        document.querySelector("main").append(userScore)
+    }else{
+        userScore.textContent = "Game over, unfortunately you didn't finish the quiz. Your score is " + quizScore;
+        document.querySelector("main").append(userScore)
+    }
+
+}
 //function to start game when play button is clicked
 function init(){
     countdown()
