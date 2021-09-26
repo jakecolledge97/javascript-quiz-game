@@ -1,10 +1,14 @@
 :root {
     --dark-col: linear-gradient(#3D5DE0, #3C51A6 ,#3C51A6);
+    --light-col: linear-gradient(#6279D9, #8D99CC, #8D99CC , #8D99CC,#6279D9);
 }
 
 *{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
+}
+body{
+    background-color: #8D99CC;
 }
 
 header{
@@ -42,6 +46,11 @@ main{
     background-image: var(--dark-col);
     
 }
+main p{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
 
 .game-menu{
     display: flex;
@@ -50,7 +59,9 @@ main{
 }
 
 .play-game{
-    background-color: #8D99CC;
+    background-color: #3E4F94;
+    font-size: 15px;
+    font-weight: 700;
     color: #101731;
     border: none;
     padding: 10px 15px;
@@ -58,9 +69,8 @@ main{
     border-radius: 5px;
 }
 .play-game:hover{
-    background-color: #7a93f5;
-    padding: 9px 14px;
-    border: #6279D9 solid 1px;
+    background-color: #6279D9;
+    padding: 10px 15px;
     border-radius: 5px;
 }
 

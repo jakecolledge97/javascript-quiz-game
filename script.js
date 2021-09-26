@@ -161,10 +161,11 @@ function gameOver(){
         userScore.textContent = "Game over, unfortunately you didn't finish the quiz. Your score is " + quizScore;
         document.querySelector("main").append(userScore)
     }
-
+    return
 }
 //function to start game when play button is clicked
 function init(){
+    document.querySelector("button").disabled = true; 
     countdown()
     buildQuiz()
 }
