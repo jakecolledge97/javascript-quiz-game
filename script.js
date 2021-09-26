@@ -17,6 +17,36 @@ var myQuestions = [{
         d:"All of the above"
     },
     correctAnswer: "All of the above"
+},
+{
+    question: "Which of the following function of Number object returns a string value version of the current number?",
+    answers: {
+        a:"toString()",
+        b:"toFixed()",
+        c:"toLocaleString()",
+        d:"toPrecision()"
+    },
+    correctAnswer: "toString()"
+},
+{
+    question: "Which of the following function of String object returns the calling string value converted to lower case?",
+    answers: {
+        a:"toLocaleLowerCase()",
+        b:"toLowerCase()",
+        c:"toString()",
+        d:"substring()"
+    },
+    correctAnswer: "toLowerCase()"
+},
+{
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: {
+        a:"<javascript>",
+        b:"<js>",
+        c:"<script>",
+        d:"<code>"
+    },
+    correctAnswer: "<script>"
 }]
 var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
@@ -76,22 +106,34 @@ function askAnswers(){
 }
 //function to check answers when clicks and build the next questions
 function checkAnswers(){
+    //checks if game is over
     var correct = myQuestions[questionCounter].correctAnswer
     if(userAnswer === correct){
         questionCounter++
         quizScore++
+        //checks if all questions have been asked
+        if(questionCounter === questionsAmount){
+            gameOver()
+        }        
         buildQuiz()
     }else{
         questionCounter++
+        //checks if all questions have been asked
+        if(questionCounter === questionsAmount){
+            gameOver()
+        }  
         buildQuiz()
     }
     
 }
 //function that starts a countdown when play game button is clicked
 function countdown(){
-    var timeLeft = 6;
+    var timeLeft = 60;
 
     var timeInterval = setInterval(function() {
+        if(questionsAmount === questionCounter){
+            clearInterval(timeInterval)
+        }
         if(timeLeft < 1){
             timeLeft--
             gameOver()
