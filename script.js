@@ -50,6 +50,7 @@ var myQuestions = [{
 }]
 var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
+var timeLeft = 600;
 var questionsAmount = myQuestions.length;
 var questionCounter = 0;
 var quizScore = 0;
@@ -118,6 +119,7 @@ function checkAnswers(){
         buildQuiz()
     }else{
         questionCounter++
+        timeLeft = timeLeft-50
         //checks if all questions have been asked
         if(questionCounter === questionsAmount){
             gameOver()
@@ -128,7 +130,6 @@ function checkAnswers(){
 }
 //function that starts a countdown when play game button is clicked
 function countdown(){
-    var timeLeft = 60;
 
     var timeInterval = setInterval(function() {
         if(questionsAmount === questionCounter){
@@ -142,7 +143,7 @@ function countdown(){
             timerEl.textContent = timeLeft
             timeLeft--
         }
-    }, 1000);
+    }, 100);
 }
 //function finish game
 function gameOver(){
