@@ -112,6 +112,7 @@ function checkAnswers(){
     if(userAnswer === correct){
         //checks if all questions have been asked  
         if(questionCounter === 4){
+            quizScore++
             gameOver()
             return
         }else{
@@ -137,7 +138,7 @@ function checkAnswers(){
 function countdown(){
 
     var timeInterval = setInterval(function() {
-        if(questionsAmount === questionCounter){
+        if(questionsAmount-1 === questionCounter){
             clearInterval(timeInterval)
         }
         if(timeLeft < 1){
@@ -152,6 +153,8 @@ function countdown(){
 }
 //function finish game
 function gameOver(){
+    document.querySelector("button").disabled = false; 
+    playGame.textContent = "Restart"
     //removes the previous question
     document.querySelector("main p").remove()
     //removes previous answers button
