@@ -110,20 +110,25 @@ function checkAnswers(){
     //checks if game is over
     var correct = myQuestions[questionCounter].correctAnswer
     if(userAnswer === correct){
-        questionCounter++
-        quizScore++
-        //checks if all questions have been asked
-        if(questionCounter === questionsAmount){
+        //checks if all questions have been asked  
+        if(questionCounter === 4){
             gameOver()
-        }        
+            return
+        }else{
+            questionCounter++
+        }
+        quizScore++     
         buildQuiz()
     }else{
-        questionCounter++
-        timeLeft = timeLeft-50
         //checks if all questions have been asked
-        if(questionCounter === questionsAmount){
+        if(questionCounter === 4){
             gameOver()
-        }  
+            return
+        }else{
+            questionCounter++
+        }
+        timeLeft = timeLeft-50
+         
         buildQuiz()
     }
     
@@ -154,7 +159,7 @@ function gameOver(){
     arr.forEach(element => element.remove())
 
     var userScore = document.createElement("p")
-    if(questionCounter === questionsAmount){
+    if(questionCounter === questionsAmount-1){
         userScore.textContent = "Congrats you have finished the quiz. \bYou finished with a score of " + quizScore;
         document.querySelector("main").append(userScore)
     }else{
