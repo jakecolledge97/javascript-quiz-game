@@ -76,7 +76,7 @@ function askQuestions(){
     var askQuestion = document.createElement("p")
     //removes the descriptor already in main if its there
     if(questionCounter === 0){
-        document.querySelector("#game-description").remove()  
+        document.querySelector("#game-description").style.display = "none"
     }else if(questionCounter > 0){
         //removes the previous question
         document.querySelector("main p").remove()
@@ -159,6 +159,8 @@ function countdown(){
 //function finish game
 function gameOver(){
     document.querySelector("button").disabled = false; 
+    playGame.removeEventListener("click" , init)
+    playGame.addEventListener("click", resetGame)
     userInitials.value = ""
     saveHighscore.addEventListener("submit", saveScore)
     playGame.textContent = "Restart"
@@ -185,8 +187,15 @@ function gameOver(){
 //function to save initials and score to local storage
 function saveScore(event){
     event.preventDefault()
-    document.querySelector(".highscore-form").style.display = "none"
+    //check if user has entered initials
     var userInitials = saveHighscore.querySelector("#initials").value
+    if(userInitials === ""){
+        alert("you must enter your initials!")
+        return
+    }
+    document.querySelector(".highscore-form").style.display = "none"
+    
+    
     
     var initialsArr = [];
     var scoresArr = [];
@@ -201,6 +210,24 @@ function saveScore(event){
     document.querySelector(".highscore-link").style.display = "flex"
 
     userInitials.value = ""
+}
+function resetGame(){
+    timeLeft = 30;
+    stopTimer = 0;
+    questionCounter = 0;
+    quizScore = 0;
+    timerEl.textContent="Time"
+    document.querySelector(".highscore-form").style.display = "none"
+    document.querySelector(".highscore-link").style.display = "none"
+
+    //yes this is a dumb way to reset but I was too far gone to care
+    playGame.textContent = "Play Game"
+    playGame.removeEventListener("click" , resetGame)
+    playGame.addEventListener("click", init)
+    document.querySelector("main p").remove()
+    document.querySelector("#game-description").style.display = "inline-block"
+
+
 }
 //function to start game when play button is clicked
 function init(){
