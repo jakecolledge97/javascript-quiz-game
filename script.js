@@ -52,7 +52,7 @@ var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
 var saveHighscore = document.querySelector(".highscore-form")
 var userInitials = saveHighscore.querySelector("#initials")
-var timeLeft = 600;
+var timeLeft = 30;
 var stopTimer = 0;
 var questionsAmount = myQuestions.length;
 var questionCounter = 0;
@@ -133,7 +133,7 @@ function checkAnswers(){
         }else{
             questionCounter++
         }
-        timeLeft = timeLeft-50
+        timeLeft = timeLeft-5
          
         buildQuiz()
     }
@@ -154,7 +154,7 @@ function countdown(){
             timerEl.textContent = timeLeft
             timeLeft--
         }
-    }, 100);
+    }, 1000);
 }
 //function finish game
 function gameOver(){

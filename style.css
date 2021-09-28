@@ -51,6 +51,12 @@ main p{
     font-weight: bold;
     color: white;
 }
+main .highscores{
+    text-align: left;
+}
+li{
+    list-style-type: none;
+}
 
 .game-menu{
     display: flex;
