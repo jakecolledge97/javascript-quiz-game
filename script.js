@@ -198,6 +198,8 @@ function saveScore(event){
     localStorage.setItem("initials", JSON.stringify(initialsArr));
     localStorage.setItem("highscores", JSON.stringify(scoresArr));  
     
+    document.querySelector(".highscore-link").style.display = "flex"
+
     userInitials.value = ""
 }
 //function to start game when play button is clicked
