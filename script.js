@@ -50,7 +50,10 @@ var myQuestions = [{
 }]
 var playGame = document.querySelector(".play-game")
 var timerEl = document.querySelector(".time")
+var saveHighscore = document.querySelector(".highscore-form")
+var userInitials = saveHighscore.querySelector("#initials")
 var timeLeft = 600;
+var stopTimer = 0;
 var questionsAmount = myQuestions.length;
 var questionCounter = 0;
 var quizScore = 0;
@@ -113,16 +116,18 @@ function checkAnswers(){
         //checks if all questions have been asked  
         if(questionCounter === 4){
             quizScore++
+            stopTimer = 5
             gameOver()
             return
         }else{
             questionCounter++
         }
-        quizScore++     
+        quizScore++    
         buildQuiz()
     }else{
         //checks if all questions have been asked
         if(questionCounter === 4){
+            stopTimer = 5
             gameOver()
             return
         }else{
@@ -138,7 +143,7 @@ function checkAnswers(){
 function countdown(){
 
     var timeInterval = setInterval(function() {
-        if(questionsAmount-1 === questionCounter){
+        if(stopTimer === questionsAmount){
             clearInterval(timeInterval)
         }
         if(timeLeft < 1){
@@ -154,7 +159,12 @@ function countdown(){
 //function finish game
 function gameOver(){
     document.querySelector("button").disabled = false; 
+    userInitials.value = ""
+    saveHighscore.addEventListener("submit", saveScore)
     playGame.textContent = "Restart"
+
+    document.querySelector(".highscore-form").style.display = "flex"
+    
     //removes the previous question
     document.querySelector("main p").remove()
     //removes previous answers button
@@ -169,7 +179,26 @@ function gameOver(){
         userScore.textContent = "Game over, unfortunately you didn't finish the quiz. Your score is " + quizScore;
         document.querySelector("main").append(userScore)
     }
+
     return
+}
+//function to save initials and score to local storage
+function saveScore(event){
+    event.preventDefault()
+    document.querySelector(".highscore-form").style.display = "none"
+    var userInitials = saveHighscore.querySelector("#initials").value
+    
+    var initialsArr = [];
+    var scoresArr = [];
+    initialsArr = JSON.parse(localStorage.getItem("initials"));
+    scoresArr = JSON.parse(localStorage.getItem("highscores"));
+
+    initialsArr.push(userInitials)
+    scoresArr.push(quizScore)
+    localStorage.setItem("initials", JSON.stringify(initialsArr));
+    localStorage.setItem("highscores", JSON.stringify(scoresArr));  
+    
+    userInitials.value = ""
 }
 //function to start game when play button is clicked
 function init(){
