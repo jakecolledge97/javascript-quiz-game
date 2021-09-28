@@ -189,8 +189,8 @@ function saveScore(event){
     event.preventDefault()
     //check if user has entered initials
     var userInitials = saveHighscore.querySelector("#initials").value
-    if(userInitials === ""){
-        alert("you must enter your initials!")
+    if(userInitials === "" || userInitials.length > 2){
+        alert("you must enter your initials! eg. JC")
         return
     }
     document.querySelector(".highscore-form").style.display = "none"

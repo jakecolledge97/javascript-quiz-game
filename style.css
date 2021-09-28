@@ -65,9 +65,12 @@ main .highscores{
     border-radius: 10px;
     background-image: var(--dark-col);
 }
-.highscore-link a{
+a{
     text-decoration: none;
     color: black;
+    background-image: var(--light-col);
+    border-radius: 5px;
+    padding: 5px;
 }
 li{
     list-style-type: none;
@@ -134,4 +137,12 @@ main button:hover{
     padding: 9px 14px;
     border: #6279D9 solid 1px;
     border-radius: 5px;
+}
+footer{
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    height: 20px;
+    width: 100%;
+    background-image: var(--dark-col);
 }
