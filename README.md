@@ -15,17 +15,20 @@ This Is a Javascript quiz, that will ask 5 questions within 30 seconds. Every wr
 
 Here is a screenshot of the full page.
 
-![Password Generator full page screenshot](fullpage.png)
+![Quiz game full page screenshot](index.png)
 
+And the highscores page
+
+![Highscore full page screenshot](highscores.png)
 
 ## To edit this projects repository
 
 1. Open an empty project in VS code.
 2. Open an integrated terminal and copy and paste the following to clone the repo:
 ```
-git clone git@github.com:jakecolledge97/password-generator.git
+git clone git@github.com:jakecolledge97/javascript-quiz-game.git
 ```
-(this is found on my github page in the password generator repository https://github.com/jakecolledge97/password-generator .)
+(this is found on my github page in the password generator repository https://github.com/jakecolledge97/javascript-quiz-game .)
 
 3. right click in the open index.html document and select open in default browser.
 
