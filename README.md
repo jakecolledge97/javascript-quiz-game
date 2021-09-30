@@ -9,11 +9,11 @@
 
 ## Description
 
-This Is a Javascript quiz, that will ask 5 questions within 30 seconds. Every wrong question will subtract 5 seconds from the time. At the end it will give you the option to add yourself into the highscores with your initials. This project helped me learn how to use google to research questions I had to solve. It helped me learn how to create functions, and showed me that there are multiple ways of doing things. 
+This Is a Javascript quiz, that will ask 5 questions within 30 seconds. Every wrong question will subtract 5 seconds from the time. At the end it will give you the option to add yourself into the highscores with your initials, that will add your initials to the seperate highscores page. This project helped me learn how to use google to research questions I had to solve. It helped me learn how to create functions, and showed me that there are multiple ways of doing things. 
 
 ## Assets
 
-Here is an screenshot of the full page.
+Here is a screenshot of the full page.
 
 ![Password Generator full page screenshot](fullpage.png)
 

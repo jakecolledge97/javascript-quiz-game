@@ -175,7 +175,7 @@ function gameOver(){
 
     var userScore = document.createElement("p")
     if(questionCounter === questionsAmount-1){
-        userScore.textContent = "Congrats you have finished the quiz. \bYou finished with a score of " + quizScore;
+        userScore.textContent = "Congrats you have finished the quiz. \nYou finished with a score of " + quizScore;
         document.querySelector("main").append(userScore)
     }else{
         userScore.textContent = "Game over, unfortunately you didn't finish the quiz. Your score is " + quizScore;
@@ -201,9 +201,16 @@ function saveScore(event){
     var scoresArr = [];
     initialsArr = JSON.parse(localStorage.getItem("initials"));
     scoresArr = JSON.parse(localStorage.getItem("highscores"));
+    if(initialsArr == null && scoresArr == null){
+        initialsArr = [userInitials];
+        scoresArr = [quizScore];
+    }else{
+        initialsArr.push(userInitials)
+        scoresArr.push(quizScore)
+    }
+    
 
-    initialsArr.push(userInitials)
-    scoresArr.push(quizScore)
+    
     localStorage.setItem("initials", JSON.stringify(initialsArr));
     localStorage.setItem("highscores", JSON.stringify(scoresArr));  
     
